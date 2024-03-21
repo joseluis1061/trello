@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 export class BtnComponent{
   @Input() typeBtn:'button'| 'reset' | 'submit' = 'submit';
   @Input() textColor: string = 'text-white';
-  @Input() color: 'success' | 'danger' | 'primary' = 'success';
+  @Input() color: string = 'success';
 
 
 
