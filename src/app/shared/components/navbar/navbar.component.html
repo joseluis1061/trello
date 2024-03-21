@@ -23,7 +23,9 @@
         </ul>
       </div>
     </div>
-    <div class="flex items-center">
+    <div class="flex items-center justify-between gap-5 text-white">
+      <fa-icon [icon]="faInfoCircle" class="cursor-pointer"></fa-icon>
+      <fa-icon [icon]="faBell" class="cursor-pointer"></fa-icon>
       <button
         type="button"
         class="flex rounded-full"
@@ -57,8 +59,7 @@
         (click)="activeMenu = !activeMenu"
         class="block text-sm text-gray-900"
       >
-        <!-- <fa-icon [icon]="faClose"></fa-icon> -->
-        X
+        <fa-icon [icon]="faClose"></fa-icon>
       </button>
     </div>
     <div class="py-3 px-4 flex items-center space-x-4">
