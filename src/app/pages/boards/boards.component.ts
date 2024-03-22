@@ -5,11 +5,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBox, faWaveSquare, faClock, faAngleUp, faAngleDown, faHeart, faBorderAll, faUsers, faGear } from '@fortawesome/free-solid-svg-icons';
 import { faTrello } from '@fortawesome/free-brands-svg-icons';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
-
+import { BoardComponent } from '../board/board.component';
 @Component({
   selector: 'app-boards',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, CdkAccordionModule, FontAwesomeModule],
+  imports: [NavbarComponent, CommonModule, CdkAccordionModule, FontAwesomeModule, BoardComponent],
   templateUrl: './boards.component.html'
 })
 export class BoardsComponent {
