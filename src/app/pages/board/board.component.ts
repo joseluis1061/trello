@@ -11,7 +11,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Column } from '../../models/todo.model';
+import { Column, ToDo } from '../../models/todo.model';
 @Component({
   selector: 'app-board',
   standalone: true,
@@ -20,10 +20,6 @@ import { Column } from '../../models/todo.model';
   styleUrl: './board.component.scss'
 })
 export class BoardComponent {
-
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
   faTrello = faTrello;
   faBox = faBox;
@@ -36,43 +32,53 @@ export class BoardComponent {
   faUsers = faUsers;
   faGear = faGear;
 
-  items = [
+  columns: Column[] = [
     {
-      label: 'Item 1',
-      items: [
+      title: 'ToDo',
+      todos: [
         {
-          label: 'Sub Item 1.1'
-        },
-        {
-          label: 'Sub Item 1.2'
+          id: '1',
+          title: 'Brushes dishes'
         }
       ]
     },
     {
-      label: 'Item 2',
-      items: [
+      title: 'Doing',
+      todos: [
         {
-          label: 'Sub Item 2.1'
+          id: '1',
+          title: 'Sing in school'
         },
+        {
+          id: '2',
+          title: 'Cut grass'
+        },
+        {
+          id: '3',
+          title: 'Make homework'
+        },
+        {
+          id: '4',
+          title: 'Study english'
+        }
       ]
     },
     {
-      label: 'Item 3',
-      items: [
+      title: 'Done',
+      todos: [
         {
-          label: 'Sub Item 3.1'
+          id: '1',
+          title: 'Eat brakfast'
         },
         {
-          label: 'Sub Item 3.2'
-        },
-        {
-          label: 'Sub Item 3.3'
-        },
+          id: '2',
+          title: 'Play soccer'
+        }
       ]
     }
-  ];
+  ]
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<ToDo[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

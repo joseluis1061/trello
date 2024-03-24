@@ -1,29 +1,27 @@
-<div cdkDropListGroup>
-  <div class="example-container">
-    <h2>To do</h2>
+<div>
+  <div class="container">
+    <h2>Demo board</h2>
+    <div class="flex gap-5" cdkDropListGroup>
+      <div
+      *ngFor="let column of columns"
+        class="w-80 rounded bg-gray-400 min-h-[6rem] px-4 py-3 font-bold"
+        cdkDropList
+        [cdkDropListData]="column.todos"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <p>
+          {{column.title}}
+        </p>
+        <div
+          class="flex gap-5 bg-white my-2 ring ring-gray-400 text-left text-black font-normal p-2 rounded"
+          *ngFor="let todo of column.todos"
+          cdkDrag
+        >
+          <p>{{todo.title}}</p>
 
-    <div
-      cdkDropList
-      [cdkDropListData]="todo"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      @for (item of todo; track item) {
-        <div class="example-box" cdkDrag>{{item}}</div>
-      }
-    </div>
-  </div>
+        </div>
 
-  <div class="example-container">
-    <h2>Done</h2>
-
-    <div
-      cdkDropList
-      [cdkDropListData]="done"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      @for (item of done; track item) {
-        <div class="example-box" cdkDrag>{{item}}</div>
-      }
+      </div>
     </div>
   </div>
 </div>
