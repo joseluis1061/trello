@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { faBox, faWaveSquare, faClock, faAngleUp, faAngleDown, faHeart, faBorderAll, faUsers, faGear } from '@fortawesome/free-solid-svg-icons';
 import { faTrello } from '@fortawesome/free-brands-svg-icons';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { TodoDialogComponent } from '../../shared/components/todo-dialog/todo-dialog.component';
 import {
   CdkDragDrop,
   CdkDrag,
@@ -12,10 +13,11 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Column, ToDo } from '../../models/todo.model';
+import { Dialog } from '@angular/cdk/dialog';
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CommonModule, DragDropModule, CdkDropListGroup, CdkDropList, CdkDrag],
+  imports: [CommonModule, DragDropModule, CdkDropListGroup, CdkDropList, CdkDrag, TodoDialogComponent],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })
@@ -78,6 +80,13 @@ export class BoardComponent {
     }
   ]
 
+  constructor(
+    private dialog: Dialog
+  ) { }
+
+  ngOnInit(): void {
+  }
+
   drop(event: CdkDragDrop<ToDo[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -86,9 +95,24 @@ export class BoardComponent {
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex,
+        event.currentIndex
       );
     }
+
+  }
+
+  addColumn() {
+    this.columns.push({
+      title: 'New Column',
+      todos: [],
+    });
+  }
+
+  openDialog() {
+    this.dialog.open(TodoDialogComponent, {
+      minWidth: '300px',
+      maxWidth : '50%',
+    });
   }
 
 }

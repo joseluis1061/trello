@@ -1,26 +1,27 @@
-<div>
-  <div class="container">
-    <h2>Demo board</h2>
-    <div class="flex gap-5" cdkDropListGroup>
-      <div
-      *ngFor="let column of columns"
-        class="w-80 rounded bg-gray-400 min-h-[6rem] px-4 py-3 font-bold"
-        cdkDropList
-        [cdkDropListData]="column.todos"
-        (cdkDropListDropped)="drop($event)"
-      >
-        <p>
-          {{column.title}}
-        </p>
-        <div
-          class="flex gap-5 bg-white my-2 ring ring-gray-400 text-left text-black font-normal p-2 rounded"
-          *ngFor="let todo of column.todos"
-          cdkDrag
-        >
-          <p>{{todo.title}}</p>
+<div class="flex flex-col h-screen">
+  <div class="w-full grow bg-sky-600 px-4 pb-4">
+    <div class="flex flex-col h-full">
+      <div>
+        <h2 class="text-xl font-bold text-white my-4">Demo Board</h2>
+      </div>
+      <div class="flex grow items-start w-full h-full overflow-x-scroll" cdkDropListGroup>
+        <div class="rounded bg-gray-200 w-72 p-2 mr-3 shrink-0" *ngFor="let column of columns">
+          <div class="flex justify-between py-1">
+            <h3 class="text-sm font-bold ml-2">{{ column.title }}</h3>
+          </div>
 
+          <div class="text-sm mt-2 min-h-[2.5rem]" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="column.todos">
+            <div
+              (click)="openDialog()"
+              *ngFor="let todo of column.todos"
+              cdkDrag
+              class="bg-white shadow p-2 rounded mt-2 border-b border-x-gray-300 cursor-pointer hover:bg-gray-400"
+            >
+              {{ todo.title }}
+            </div>
+          </div>
         </div>
-
+        <button class="shrink-0" (click)="addColumn()">Add Column</button>
       </div>
     </div>
   </div>
