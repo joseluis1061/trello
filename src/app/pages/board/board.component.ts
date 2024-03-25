@@ -13,7 +13,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Column, ToDo } from '../../models/todo.model';
-import { Dialog } from '@angular/cdk/dialog';
+import {Dialog} from '@angular/cdk/dialog';
 @Component({
   selector: 'app-board',
   standalone: true,
@@ -81,7 +81,7 @@ export class BoardComponent {
   ]
 
   constructor(
-    private dialog: Dialog
+    private dialog: Dialog,
   ) { }
 
   ngOnInit(): void {
@@ -108,11 +108,19 @@ export class BoardComponent {
     });
   }
 
-  openDialog() {
-    this.dialog.open(TodoDialogComponent, {
+  openDialog(todo: ToDo) {
+    const dialogRef = this.dialog.open(TodoDialogComponent, {
       minWidth: '300px',
       maxWidth : '50%',
+      disableClose: true,
+      autoFocus: false,
+      data: {
+        todo: todo,
+      }
     });
+    dialogRef.closed.subscribe(output => {
+      console.log(output);
+    })
   }
 
 }
