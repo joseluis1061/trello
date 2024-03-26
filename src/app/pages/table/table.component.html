@@ -1,1 +1,42 @@
-<p>table works!</p>
+@if(products() !== null){
+  <table cdk-table [dataSource]="products()" >
+    <!-- Header and Row Declarations -->
+    <tr cdk-header-row *cdkHeaderRowDef="['id', 'title', 'price', 'description']"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: ['id', 'title', 'price','description' ]"></tr>
+
+    <!-- @for(product of products(); track product){
+      <tr cdk-header-row *cdkHeaderRowDef="['id', 'title', 'price', 'description']"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: ['id', 'title', 'price','description' ]"></tr>
+    } -->
+
+
+
+    <!-- id Definition -->
+    <ng-container cdkColumnDef="id">
+      <th cdk-header-cell *cdkHeaderCellDef> id </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.id}} </td>
+      <td cdk-footer-cell *cdkFooterCellDef> id </td>
+    </ng-container>
+
+    <!-- Age Definition -->
+    <ng-container cdkColumnDef="title">
+      <th cdk-header-cell *cdkHeaderCellDef> title </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.title}} </td>
+    </ng-container>
+
+    <!-- Title Definition -->
+    <ng-container cdkColumnDef="price">
+      <th cdk-header-cell *cdkHeaderCellDef> price </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.price}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="description">
+      <th cdk-header-cell *cdkHeaderCellDef> description </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.description}} </td>
+    </ng-container>
+
+
+
+
+  </table>
+}
