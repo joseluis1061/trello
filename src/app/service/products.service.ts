@@ -10,6 +10,7 @@ import { error } from 'console';
 export class ProductsService {
   private url: string = "https://api.escuelajs.co/api/v1/products";
   products= signal<Product[]>([]);
+  totalPrice= signal<number>(0);
   private http = inject(HttpClient);
   getAllProducts() {
     return this.http.get<Product[]>(this.url)
