@@ -1,1 +1,21 @@
-<p>scroll works!</p>
+<div class="w-100 h-screen">
+  <p>Scroll</p>
+  <div class="flex gap-5 w-full h-1/6">
+    <div class="bg-orange-300 overflow-scroll w-1/2">
+      @if (products()) {
+        @for (product of products(); track $index) {
+          <li>{{product.title}}</li>
+        }
+      }@else{
+        <p>No hay productos</p>
+      }
+    </div>
+    <cdk-virtual-scroll-viewport  appendOnly itemSize="50" class="bg-green-300 overflow-scroll w-1/2 p-5">
+      @if (products()) {
+        <li *cdkVirtualFor="let product of products()">{{product.title}}</li>
+      }@else{
+        <p>No hay productos</p>
+      }
+    </cdk-virtual-scroll-viewport>
+  </div>
+</div>
