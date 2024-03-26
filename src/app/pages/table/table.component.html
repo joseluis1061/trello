@@ -1,8 +1,8 @@
 @if(products() !== null){
   <table cdk-table [dataSource]="products()" >
     <!-- Header and Row Declarations -->
-    <tr cdk-header-row *cdkHeaderRowDef="['id', 'title', 'price', 'description']"></tr>
-    <tr cdk-row *cdkRowDef="let row; columns: ['id', 'title', 'price','description' ]"></tr>
+    <tr cdk-header-row *cdkHeaderRowDef="columns"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: columns"></tr>
 
     <!-- @for(product of products(); track product){
       <tr cdk-header-row *cdkHeaderRowDef="['id', 'title', 'price', 'description']"></tr>

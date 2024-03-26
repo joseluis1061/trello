@@ -13,6 +13,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 export class TableComponent implements OnInit {
 
   products = signal<Product[]>([])
+  columns = ['id', 'title', 'price', 'description'];
 
   private productsService = inject(ProductsService);
 
