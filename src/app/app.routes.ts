@@ -7,7 +7,7 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'table'
+    redirectTo: 'login'
   },
   {
     path: 'login',
